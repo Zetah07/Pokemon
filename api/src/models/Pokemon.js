@@ -49,7 +49,4 @@ module.exports = (sequelize) => {
     { timestamps: false }
   );
 
-  pokemon.belongsToMany(type,{
-    through: 'pokemon_type',
-  })
 };
