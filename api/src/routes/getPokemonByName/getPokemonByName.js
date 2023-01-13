@@ -1,4 +1,3 @@
-const { default: axios } = require("axios");
 const {Pokemon, Type} = require("../../db")
 const axios = require("axios");
 

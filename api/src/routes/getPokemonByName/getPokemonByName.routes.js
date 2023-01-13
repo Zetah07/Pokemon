@@ -1,6 +1,5 @@
 const {Router} = requiere ('express');
 const {getPokemonByName} = require ('./getPokemonByName');
-const { Pokemon, Type } = require('../../db');
 const router = Router();
 
 router.get ('/pokemons', async (req, res) => {

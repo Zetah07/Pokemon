@@ -1,36 +1,10 @@
 const { Pokemon, Type } = require('../../db');
 const axios = require('axios');
 
-const getPokemonById= async (id) =>{
-    try{
-const getPokemonByIdFromDb = async()=>{
-    const result = await Pokemon.findByPk(id, {
-        include: {
-            model: Type,
-            attributes: ["name"],
-            through:{
-                attributes: [],
-            },
-        },
-    })
-    return{
-        id: result.id,
-        name: result.name,
-        hp: result.hp,
-        attack: result.attack,
-        defense: result.defense,
-        speed: result.speed,
-        height: result.height,
-        weight: result.weight,
-        imgUrl: result.imgUrl,
-        types:result.Types.map(type => type.name)
-    };
-}
-
-const getPokemonByIdFromApi = async () => {
+const getPokemonById = async (id) => {
     const api = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const pokemon = api.data;
-    return{
+    return {
         id: pokemon.id,
         name: pokemon.name,
         hp: pokemon.stats[0].base_stat,
@@ -43,11 +17,28 @@ const getPokemonByIdFromApi = async () => {
         types: pokemon.types.map(tuki => tuki.type.name)
     };
 }
-return [...getPokemonByIdFromDb, ...getPokemonByIdFromApi]
-}catch(error){
-    throw new Error("cannot get pokemon by id", error);
+
+const getPokemonByIdFromDb = async (id) => {
+    const result = await Pokemon.findByPk(id, {
+        include: {
+            model: Type,
+            attributes: ["name"],
+            through: {
+                attributes: [],
+            },
+        },
+    })
+    return {
+        id: result.id,
+        name: result.name,
+        hp: result.hp,
+        attack: result.attack,
+        defense: result.defense,
+        speed: result.speed,
+        height: result.height,
+        weight: result.weight,
+        imgUrl: result.imgUrl,
+        types: result.Types.map(type => type.name)
+    };
 }
-}
-module.exports ={
-    getPokemonById,
-}
+module.exports = { getPokemonById, getPokemonByIdFromDb };

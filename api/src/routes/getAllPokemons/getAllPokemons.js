@@ -1,5 +1,5 @@
-const { Pokemon, Type } = require('../db');
-const getPokemons = require('./getPokemons');
+const { Pokemon, Type } = require('../../db');
+const getPokemons = require('../getPokemons/getPokemons.js');
 
 const getAllPokemons = async () => {
     try{

@@ -1,12 +1,17 @@
-const express = require('express');
-import * as routes from '../routes';
+const {Router} = require('express');
+// const {getAllPokemons} = require('./getAllPokemons/getAllPokemons.js')
+const getPokemonById = require('./getPokemonById/getPokemonById.routes.js')
+// const {getTypes} = require('./getTypes/getTypes.js')
+// const {getPokemonByName} = require('./getPokemonByName/getPokemonByName.js')
 
-export const pokedexRouter = express.Router();
+const router = Router();
 
 // rutas generales de el back 
-pokedexRouter.get('/pokemons', routes.getAllPokemons);
-pokedexRouter.get('/pokemons/:id', routes.getPokemonById);
-pokedexRouter.get('/types', routes.getTypes);
-pokedexRouter.get('/:id', routes.getPokemonsByName);
+// router.get('/pokemons', getAllPokemons);
+router.use('/pokemons', getPokemonById);
+// router.get('/types', getTypes);
+// router.get('/:id', getPokemonByName);
 // pokedexRouter.post('', routes.xxxxxxxxxxx) 
 // por agregar el contido de actualizacion  y subida de los pokemon por form
+
+module.exports= router;
