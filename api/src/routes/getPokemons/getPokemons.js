@@ -19,6 +19,7 @@ const getPokemons = async () => {
         height: pokemon.data.height,
         weight: pokemon.data.weight,
         imgUrl: pokemon.data.sprites.other.dream_world.front_default,
+        
         types: pokemon.data.types.map((tuki) => tuki.type.name),
       };
     });

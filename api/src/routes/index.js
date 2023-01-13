@@ -1,12 +1,12 @@
-const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+const express = require('express');
+import * as routes from '../routes';
 
+export const pokedexRouter = express.Router();
 
-const router = Router();
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
-
-module.exports = router;
+// rutas generales de el back 
+pokedexRouter.get('/pokemons', routes.getAllPokemons);
+pokedexRouter.get('/pokemons/:id', routes.getPokemonById);
+pokedexRouter.get('/types', routes.getTypes);
+pokedexRouter.get('/:id', routes.getPokemonsByName);
+// pokedexRouter.post('', routes.xxxxxxxxxxx) 
+// por agregar el contido de actualizacion  y subida de los pokemon por form
